@@ -1,0 +1,19 @@
+### INSTALL REST CLIENT extension to be able to use this in your VSCODE
+
+GET http://localhost:3000/notes
+
+###
+
+GET http://localhost:3000/notes/5de2c39c-149e-4eaa-8004-0f28a381c777
+
+
+###
+
+POST http://localhost:3000/notes
+Content-Type: application/json
+
+{
+    "author": "Bob",
+    "text": "bob left this message",
+    "date": "2025-09-17"
+}
