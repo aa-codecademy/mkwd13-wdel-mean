@@ -59,5 +59,22 @@ export class NotesService {
     const noteExists = notes.some((note) => note.id === id);
 
     if (!noteExists) throw new NotFoundException('Note not found!');
+
+    const updatedNotes = notes.map((note) =>
+      note.id === id ? { ...note, ...updateNoteDto } : note,
+    );
+
+    await this.saveNotes(updatedNotes);
+  }
+
+  async deleteNote(id: string) {
+    const notes = await this.findAllNotes();
+
+    const updatedNotes = notes.filter((note) => note.id !== id);
+
+    if (notes.length === updatedNotes.length)
+      throw new NotFoundException('Note not found!');
+
+    await this.saveNotes(updatedNotes);
   }
 }

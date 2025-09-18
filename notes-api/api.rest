@@ -13,7 +13,22 @@ POST http://localhost:3000/notes
 Content-Type: application/json
 
 {
-    "author": "Bob",
-    "text": "bob left this message",
-    "date": "2025-09-17"
+    "author": "John",
+    "text": "This is just another note",
+    "date": "2025-10-10",
+    "city": "Madrid"
 }
+
+###
+
+PATCH http://localhost:3000/notes/5de2c39c-149e-4eaa-8004-0f28a381c777
+Content-Type: application/json
+
+{
+    "author": "test",
+    "text": "This is the updated text"
+}
+
+###
+
+DELETE http://localhost:3000/notes/d48be54d-4ddf-476d-9d62-22e86b2aa17c

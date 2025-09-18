@@ -1,9 +1,9 @@
 [
   {
     "id": "5de2c39c-149e-4eaa-8004-0f28a381c777",
-    "author": "John",
-    "text": "My first note ever ( UPDATED )",
-    "date": "2025-09-18"
+    "author": "test",
+    "text": "This is the updated text",
+    "date": "2025-09-17"
   },
   {
     "id": "bd72aea5-5bc5-4804-8776-9976814b900c",
@@ -12,9 +12,16 @@
     "date": "2025-09-17"
   },
   {
-    "id": "d48be54d-4ddf-476d-9d62-22e86b2aa17c",
-    "author": "Bob",
-    "text": "bob left this message",
-    "date": "2025-09-17"
+    "id": "736936db-2b25-4a8a-b934-e8e05ced26eb",
+    "author": "",
+    "text": false,
+    "date": "2025-09-17",
+    "city": "Madrid"
+  },
+  {
+    "id": "231d30c4-d8f7-4484-8ad3-998a03199b7a",
+    "author": "John",
+    "text": "This is just another note",
+    "date": "2025-10-10"
   }
 ]
