@@ -5,8 +5,6 @@ Source Repository for the Angular + NestJs elective subject
 - Trainer: [Borce Borisovski](mailto:borisovski.borce@gmail.com)
 - Assistant: [Igor Veic](mailto:igorveic7@gmail.com)
 
----
-
 ## Useful Links
 
 - [MongoDB](https://www.mongodb.com/products/platform/atlas-database)
