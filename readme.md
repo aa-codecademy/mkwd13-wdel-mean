@@ -1,4 +1,4 @@
-Source Repository for the Angular + NestJs elective subject
+# Web Development Elective - Angular & NestJS Full-Stack Development 🚀
 
 ## Team
 
