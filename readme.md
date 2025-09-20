@@ -1,4 +1,4 @@
-# Web Development Elective - Angular & NestJS Full-Stack Development 🚀
+# Web Development Elective - Angular & NestJS 🚀
 
 ## Team
 
