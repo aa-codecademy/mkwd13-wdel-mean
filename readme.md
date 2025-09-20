@@ -11,6 +11,8 @@ Source Repository for the Angular + NestJs elective subject
 
 - [ExpressJS](https://expressjs.com/)
 
+- [TypeScript](https://www.typescriptlang.org/)
+
 - [NestJS](https://docs.nestjs.com/)
 
 - [Angular](https://angular.dev/)
