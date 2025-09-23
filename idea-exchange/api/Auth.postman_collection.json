@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "6f981d6c-91d9-40c3-b3f9-af3ce05561fd",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33333089",
+		"_collection_link": "https://cloudy-meteor-558329.postman.co/workspace/gen-13-idea-exchange~41834b54-eb0e-4aaa-9b28-e1c316c5e764/collection/15639951-6f981d6c-91d9-40c3-b3f9-af3ce05561fd?action=share&source=collection_link&creator=33333089"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"seconduser\",\r\n    \"email\": \"second@gmail.com\",\r\n    \"password\": \"test1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"second@gmail.com\",\r\n    \"password\": \"test1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
