@@ -73,7 +73,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"First post again\",\r\n    \"body\": \"Lorem ispum dolor\"\r\n}",
+					"raw": "{\r\n    \"title\": \"I am made by first user\",\r\n    \"body\": \"Lorem ispum dolor\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -149,6 +149,56 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Like Post",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts/:id/like",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						":id",
+						"like"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "68d6b47a29e241a0f4e7c1f8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dislike Post",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts/:id/dislike",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						":id",
+						"dislike"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "68d6b47a29e241a0f4e7c1f8"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -156,7 +206,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGQyZGFmYmMwYjcwNTM2ZmUxOTA0MzIiLCJpYXQiOjE3NTg4MjQ0MDcsImV4cCI6MTc1ODgyNTAwN30.9MOUTS9XAo8vTeJgFs3XSU3cO2JuRWXIxY6wA2ElL4U",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGQ2YmFkYWViOTM3ZGNlZWMwZWRiYjQiLCJpYXQiOjE3NTg5MDc2ODUsImV4cCI6MTc1ODkwODI4NX0.MJKCepAWhnCtXpQEjnyR1GYcelGysalci2RBybrJ4AA",
 				"type": "string"
 			}
 		]

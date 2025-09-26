@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"seconduser\",\r\n    \"email\": \"second@gmail.com\",\r\n    \"password\": \"test1234\"\r\n}",
+					"raw": "{\r\n    \"username\": \"thirduser\",\r\n    \"email\": \"third@gmail.com\",\r\n    \"password\": \"test1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +41,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"second@gmail.com\",\r\n    \"password\": \"test1234\"\r\n}",
+					"raw": "{\r\n    \"email\": \"third@gmail.com\",\r\n    \"password\": \"test1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -56,6 +56,60 @@
 					"path": [
 						"auth",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGQ2YmFkYWViOTM3ZGNlZWMwZWRiYjQiLCJpYXQiOjE3NTg5MDcxNTgsImV4cCI6MTc1OTUxMTk1OH0.0jf1dlLOhBBMVOEw91aZ8jIeBlHNsJYckvwpwcZ8Lyg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/auth/refresh-token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"refresh-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGQ2YmFkYWViOTM3ZGNlZWMwZWRiYjQiLCJpYXQiOjE3NTg5MDYxNzYsImV4cCI6MTc1OTUxMDk3Nn0.Ei-Klp9axLw-A3Wq-bh-Yn7s6g_V6MFJvLdC4_7lsqo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/auth/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"logout"
 					]
 				}
 			},
