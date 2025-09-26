@@ -10,6 +10,7 @@ import { CredentialsDto } from './dtos/credentials.dto';
 import { compare } from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { registerHooks } from 'module';
 
 @Injectable()
 export class AuthService {
@@ -42,17 +43,12 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
 
     const token = await this.jwtService.signAsync({ userId: foundUser.id });
-    const refreshToken = await this.jwtService.signAsync(
-      {
-        userId: foundUser.id,
-      },
-      {
-        secret: this.configServce.get('REFRESH_TOKEN_SECRET'),
-        expiresIn: '7d',
-      },
-    );
+    const refreshToken = await this.createRefreshToken(foundUser.id);
 
-    const { password, ...userWithoutPass } = foundUser.toObject();
+    await this.usersService.saveRefreshToken(foundUser.id, refreshToken);
+
+    const { password, refreshTokens, ...userWithoutPass } =
+      foundUser.toObject();
 
     return { ...userWithoutPass, token, refreshToken };
   }
@@ -66,12 +62,49 @@ export class AuthService {
 
       const foundUser = await this.usersService.findById(userId);
 
-      const token = await this.jwtService.signAsync({ userId: foundUser.id });
+      //Check if refresh token exists in refresh tokens array in users document
+      const tokenExists = foundUser.refreshTokens.some(
+        (token) => token === refreshToken,
+      );
 
-      return { token };
+      if (!tokenExists) throw new Error("Token doesn't exist");
+
+      await this.usersService.deleteRefreshToken(foundUser.id, refreshToken);
+
+      const token = await this.jwtService.signAsync({ userId: foundUser.id });
+      const newRefreshToken = await this.createRefreshToken(foundUser.id);
+
+      await this.usersService.saveRefreshToken(foundUser.id, newRefreshToken);
+
+      return { token, refreshToken: newRefreshToken };
     } catch (error) {
       console.log(error);
       throw new ForbiddenException();
     }
+  }
+
+  async logoutUser(refreshToken: string) {
+    try {
+      const { userId } = await this.jwtService.verifyAsync(refreshToken, {
+        secret: this.configServce.get('REFRESH_TOKEN_SECRET'),
+      });
+
+      await this.usersService.deleteRefreshToken(userId, refreshToken);
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException("Couldn't logout user");
+    }
+  }
+
+  private async createRefreshToken(userId: string) {
+    const refreshToken = await this.jwtService.signAsync(
+      { userId },
+      {
+        secret: this.configServce.get('REFRESH_TOKEN_SECRET'),
+        expiresIn: '7d',
+      },
+    );
+
+    return refreshToken;
   }
 }

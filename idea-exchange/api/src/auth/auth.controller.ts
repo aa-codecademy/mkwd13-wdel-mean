@@ -25,4 +25,10 @@ export class AuthController {
   async refreshAccessToken(@Body() refreshTokenDto: RefreshTokenDto) {
     return this.authService.refreshAccessToken(refreshTokenDto.refreshToken);
   }
+
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Post('logout')
+  logoutUser(@Body() refreshTokenDto: RefreshTokenDto) {
+    return this.authService.logoutUser(refreshTokenDto.refreshToken);
+  }
 }

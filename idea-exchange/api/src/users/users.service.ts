@@ -33,4 +33,22 @@ export class UsersService {
       throw new NotFoundException('User not found');
     }
   }
+
+  async saveRefreshToken(userId: string, refreshToken: string) {
+    const user = await this.findById(userId);
+
+    user.refreshTokens.push(refreshToken);
+
+    await user.save();
+  }
+
+  async deleteRefreshToken(userId: string, refreshToken: string) {
+    const user = await this.findById(userId);
+
+    user.refreshTokens = user.refreshTokens.filter(
+      (token) => token !== refreshToken,
+    );
+
+    await user.save();
+  }
 }
