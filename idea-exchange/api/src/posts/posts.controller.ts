@@ -57,4 +57,14 @@ export class PostsController {
   remove(@Req() req: Request, @Param('id') id: string) {
     return this.postsService.remove(req.user.id, id);
   }
+
+  @Patch(':id/like')
+  likePost(@Param('id') id: string, @Req() req: Request) {
+    return this.postsService.likePost(req.user.id, id);
+  }
+
+  @Patch(':id/dislike')
+  dislikePost(@Param('id') id: string, @Req() req: Request) {
+    return this.postsService.dislikePost(req.user.id, id);
+  }
 }

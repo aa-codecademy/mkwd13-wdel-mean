@@ -7,7 +7,7 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Post } from './models/post.model';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 
 @Injectable()
 export class PostsService {
@@ -91,5 +91,73 @@ export class PostsService {
 
   async findByUser(userId: string) {
     return this.postModel.find({ author: userId }).sort('-createdAt');
+  }
+
+  async likePost(userId: string, postId: string) {
+    try {
+      const post = await this.postModel.findById(postId).populate({
+        path: 'author',
+        select: 'username',
+      });
+
+      if (!post) throw 'Post not found';
+
+      const authorId = post?.author['_id'] as mongoose.Schema.Types.ObjectId;
+
+      if (userId === authorId.toString()) throw 'Operation not allowed';
+
+      const dislikeExists = post.dislikes.some((id) => id === userId);
+      const likeExits = post.likes.some((id) => id === userId);
+
+      if (dislikeExists) {
+        post.dislikes = post.dislikes.filter((id) => id !== userId);
+        post.likes.push(userId);
+      } else if (likeExits) {
+        post.likes = post.likes.filter((id) => id !== userId);
+      } else {
+        post.likes.push(userId);
+      }
+
+      const updatedPost = await post.save();
+
+      return updatedPost;
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(`Coudln't like post, ERROR: ${error}`);
+    }
+  }
+
+  async dislikePost(userId: string, postId: string) {
+    try {
+      const post = await this.postModel.findById(postId).populate({
+        path: 'author',
+        select: 'username',
+      });
+
+      if (!post) throw 'Post not found';
+
+      const authorId = post?.author['_id'] as mongoose.Schema.Types.ObjectId;
+
+      if (userId === authorId.toString()) throw 'Operation not allowed';
+
+      const dislikeExists = post.dislikes.some((id) => id === userId);
+      const likeExits = post.likes.some((id) => id === userId);
+
+      if (likeExits) {
+        post.likes = post.likes.filter((id) => id !== userId);
+        post.dislikes.push(userId);
+      } else if (dislikeExists) {
+        post.dislikes = post.dislikes.filter((id) => id !== userId);
+      } else {
+        post.dislikes.push(userId);
+      }
+
+      const updatedPost = await post.save();
+
+      return updatedPost;
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(`Coudln't dislike post, ERROR: ${error}`);
+    }
   }
 }
