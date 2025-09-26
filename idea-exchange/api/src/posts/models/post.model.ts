@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { User } from 'src/users/models/user.model';
 
@@ -44,4 +44,11 @@ export class Post {
     ref: 'User',
   })
   author: User | mongoose.Schema.Types.ObjectId;
+
+  @Prop({
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+  })
+  comments: Comment[] | mongoose.Schema.Types.ObjectId[];
 }
+
+export const PostSchema = SchemaFactory.createForClass(Post);

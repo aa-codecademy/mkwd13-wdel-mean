@@ -35,10 +35,10 @@ export class AuthService {
       foundUser.password,
     );
 
-    const token = await this.jwtService.signAsync({ userId: foundUser.id });
-
     if (!isPasswordValid)
       throw new UnauthorizedException('Invalid credentials');
+
+    const token = await this.jwtService.signAsync({ userId: foundUser.id });
 
     const { password, ...userWithoutPass } = foundUser.toObject();
 
