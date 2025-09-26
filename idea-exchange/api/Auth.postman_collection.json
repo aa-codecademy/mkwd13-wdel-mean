@@ -22,14 +22,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/auth/register",
-					"protocol": "http",
+					"raw": "{{url}}/auth/register",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
-						"api",
 						"auth",
 						"register"
 					]
@@ -52,14 +49,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/auth/login",
-					"protocol": "http",
+					"raw": "{{url}}/auth/login",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
-						"api",
 						"auth",
 						"login"
 					]
