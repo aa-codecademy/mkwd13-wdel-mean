@@ -1,0 +1,53 @@
+<header class="header">
+  <div class="header-brand" routerLink="/">
+    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+    <h1>IeXc</h1>
+  </div>
+
+  <nav class="nav">
+    <div
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{
+        exact: true
+      }"
+      class="nav-link"
+    >
+      Home
+    </div>
+    @if(currentUser()) {
+    <div
+      routerLink="/posts"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{
+        exact: true
+      }"
+      class="nav-link"
+    >
+      Posts
+    </div>
+    <div routerLink="/posts/create" routerLinkActive="active" class="nav-link">Create Post</div>
+
+    <div #dropdown>
+      <div class="user-badge" (click)="toggleDropdown()">
+        {{ currentUser().username[0] | uppercase }}
+      </div>
+      @if(isDropdownOpen()) {
+      <div class="dropdown" (click)="toggleDropdown()">
+        <div class="dropdown-item username">
+          <i class="fa fa-user"></i>
+          {{ currentUser().username }}
+        </div>
+        <div class="dropdown-item" routerLink="/user/posts">My Posts</div>
+        <div class="dropdown-item" routerLink="/user/comments">My Comments</div>
+        <div class="dropdown-item" (click)="onLogoutClick()">Logout</div>
+      </div>
+      }
+    </div>
+
+    } @else {
+    <div routerLink="/login" routerLinkActive="active" class="nav-link">Login</div>
+    <div routerLink="/register" routerLinkActive="active" class="nav-link">Register</div>
+    }
+  </nav>
+</header>
